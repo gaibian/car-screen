@@ -1,0 +1,8 @@
+// 加载弹窗的一些样式
+.interface-popup{
+    min-width:249px;
+    transform:translate(0,0);
+    .active{
+        transform:translate(0,50px)
+    }
+}
