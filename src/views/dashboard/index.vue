@@ -23,6 +23,7 @@ export default {
   },
   created() {
     // 1rem = 12px
+    	
     
   },
 }
