@@ -23,7 +23,7 @@ export default {
   },
   created() {
     // 1rem = 12px
-    	
+    	console.log('this is xiaojun submit')
     
   },
 }
