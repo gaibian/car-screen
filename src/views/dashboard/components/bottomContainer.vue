@@ -1,36 +1,51 @@
 <template>
     <div class="bottom-container">
+        <span class="header-text">浙BG0G603（本部急救点）</span>
         <span class="img-span thermometer"></span>
-        <span class="text">30℃</span>
+        <span class="text"><count-to :startVal='0' :endVal='30' :duration='2000'></count-to>℃</span>
         <span class="img-span humidity"></span>
-        <span class="text">80%</span>
+        <span class="text"><count-to :startVal='0' :endVal='80' :duration='2000'></count-to>%</span>
     </div>
 </template>
 <script>
+import countTo from 'vue-count-to';
 export default {
     name: 'bottomContainer',
-    data() {
-        return {
-
-        }
+    components: {
+        countTo
     },
-    created() {}
+    data() {
+        return {}
+    },
+    created() {
+  
+        
+    }
 }
 </script>
 <style lang="scss" scoped>
-$boxShadow:0 -4px 8px rgba(100,100,100,0.1);
+$boxShadow:0 -5px 20px rgba(100,100,100,0.2);
 .bottom-container{
   display:flex;
   position:fixed;
   left:0;
   bottom:0;
   width:100%;
-  height:0.51rem;
-  background:#fff;
+  height:0.5rem;
+  background:#60ACF6;
+  box-sizing:border-box;
   box-shadow:$boxShadow;
   text-align:center;
   align-items:center;
   justify-content:center;
+  .header-text{
+    position:absolute;
+    top:50%;
+    transform:translate(0,-50%);
+    left:12px;
+    color:#fff;
+    font-size:0.18rem;
+  }
   span{
     display:inline-block;
   }
@@ -52,7 +67,7 @@ $boxShadow:0 -4px 8px rgba(100,100,100,0.1);
   }
   .text{
     font-size:0.18rem;
-    color:#333;
+    color:#fff;
     margin-right:0.25rem;
   }
 }

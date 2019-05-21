@@ -1,11 +1,12 @@
 
+// 需要用promise来封装
 class webSocket {
     constructor() {
         this.webSocket = null
         this.webSocketInit()
     }
     webSocketInit() {
-        // 初始化webSocket,并开始监听回调消息
+        // 初始化webSocket,并开始监听回调消息 =>开始建立连接 => 由后端来实时推送消息
         this.webSocket = new WebSocket('url')
         this.webSocket.onmessage = this.webSocketMessage
     }
@@ -27,4 +28,6 @@ class webSocket {
 
         }
     }
-} 
+}
+
+export default webSocket
