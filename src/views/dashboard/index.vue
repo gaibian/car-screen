@@ -2,39 +2,39 @@
   <div class="dashboard-container">
     <!--左侧内容-->
     <left-container></left-container>
+    <!--中间内容区域-->
+    <svg-container></svg-container>
     <!--底部内容-->
     <bottom-container></bottom-container>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
 import bottomContainer from './components/bottomContainer'
 import leftContainer from './components/leftContainer'
+import svgContainer from './components/svgContainer'
 export default {
   name: 'Dashboard',
   components:{
     bottomContainer,
-    leftContainer
+    leftContainer,
+    svgContainer
   },
   data() {
     return {
-      
     }
   },
+  methods:{
+  },
+  mounted() {
+  },
   created() {
-    // 1rem = 12px
-    
   },
 }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
-
 .dashboard-container {
   width:100%;
   height:100%;
-  background: -webkit-linear-gradient(to right,#fff,#e5e6ef);
-  background: -moz-linear-gradient(to right,#fff,#e5e6ef);
-  background: linear-gradient(to right,#fff,#e5e6ef);
+  background:#f0f5f7;
 }
-
 </style>
