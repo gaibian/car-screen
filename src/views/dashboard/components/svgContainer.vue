@@ -92,7 +92,7 @@ export default {
             },{
                 name:'负压式骨折固定垫',
                 val:'未在位',
-                icon:'oxygenBag'
+                icon:'fixedPad'
             },{
                 name:'铲式担架',
                 val:'未在位',
@@ -183,7 +183,7 @@ $mainColor:#5baaf4;
                 background:#fff;
                 padding-left:0.38rem;
                 box-sizing:border-box;
-                font-size:0.14rem;
+                font-size:0.15rem;
                 color:#6A7F95;
                 .equipment-icon{
                     position:absolute;
@@ -200,7 +200,7 @@ $mainColor:#5baaf4;
             margin:0;
             .icon-flex{
                 height:100%;
-                padding-right:0.12rem;
+                padding-right:0.1rem;
                 box-sizing:border-box;
                 .flex-item{
                     width:100%;
