@@ -122,7 +122,7 @@ $mainColor:#60ACF6;
             justify-content:center;
         }
         .set-box{
-            width:0.54rem;
+            padding:0 0.12rem;
             background:#60ACF6;
             height:0.35rem;
             line-height:0.35rem;

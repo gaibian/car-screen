@@ -62,8 +62,11 @@
                 <el-col :span="3" class="icon-flex none">
                     <div class="flex-item">
                         <div class="pos-box">
-                            <img src="../../../assets/syd@2x.png" class="img shu">
-                            <img  src="../../../assets/lx@2x.png" class="img-lx">
+                            <!-- <img src="../../../assets/syd@2x.png" class="img shu">
+                            <img  src="../../../assets/lx@2x.png" class="img-lx"> -->
+                            <div class="icon-box">  
+                                <svg-icon class="car-svg" :icon-class="'oxygenBag'"></svg-icon>
+                            </div>
                             <p class="name">氧气袋</p>
                             <p class="val">离线</p>
                         </div>
@@ -265,6 +268,23 @@ $margin:1vh;
                     text-align: center;
                     font-size:0.14rem;
                     transform:translate(-50%,-50%);
+                    .icon-box{
+                        position: relative;
+                        width:0.6rem;
+                        height:0.6rem;
+                        margin:0 auto;
+                        .car-svg{
+                            position: absolute;
+                            top:50%;
+                            left:50%;
+                            transform:translate(-50%,-50%);
+                            font-size:0.5rem;
+                            color:#60ACF6;
+                            // background-image: -webkit-gradient(linear, left 0, right 0, from(rgb(4, 94, 170)), to(rgb(1, 152, 216)));
+                            // -webkit-background-clip: text; /*必需加前缀 -webkit- 才支持这个text值 */
+                            // -webkit-text-fill-color: transparent; /*text-fill-color会覆盖color所定义的字体颜色： */
+                        }
+                    }
                     .img{
                         display:block;
                         margin:0 auto 0.1rem auto;
