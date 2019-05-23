@@ -27,7 +27,7 @@ export default {
     name:'leftContainer',
     data() {
         return {
-            logoImg:require('../../../assets/logo.png'),
+            logoImg:require('../../../assets/logo@2x.png'),
         }
     },
     created() {

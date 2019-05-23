@@ -55,13 +55,13 @@ $boxShadow:0 -5px 20px rgba(100,100,100,0.2);
     &.thermometer{
       width:0.15rem;
       height:0.26rem;
-      background:url('../../../assets/Thermometer.png');
+      background:url('../../../assets/wd@2x.png');
       background-size:contain;
     }
     &.humidity{
       width:0.2rem;
       height:0.26rem;
-      background:url('../../../assets/humidity.png');
+      background:url('../../../assets/sd@2x.png');
       background-size:contain;
     }
   }
