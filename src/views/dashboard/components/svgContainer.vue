@@ -5,7 +5,7 @@
                 <h2 class="title">车辆</h2>
             </div>
             <el-row class="carousel-box" type="flex" justify="space-between" style="margin:0">
-                <el-col :span="3" class="icon-flex active" :key="index">
+                <el-col :span="3" class="icon-flex active">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/O2@2x.png" class="img shu">
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex active" :key="index">
+                <el-col :span="3" class="icon-flex active">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/dj12@2x.png" class="img heng">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex active" :key="index">
+                <el-col :span="3" class="icon-flex active">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/jx3@2x.png" class="img heng">
@@ -32,7 +32,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex active" :key="index">
+                <el-col :span="3" class="icon-flex active">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/rdj@2x.png" class="img heng">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex active" :key="index">
+                <el-col :span="3" class="icon-flex active">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/hm@2x.png" class="img shu">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex active" :key="index">
+                <el-col :span="3" class="icon-flex active">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/jx1@2x.png" class="img heng">
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex none" :key="index">
+                <el-col :span="3" class="icon-flex none">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/syd@2x.png" class="img shu">
@@ -69,7 +69,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex" :key="index">
+                <el-col :span="3" class="icon-flex">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/O12@2x.png" class="img shu">
@@ -80,12 +80,12 @@
                 </el-col>
             </el-row>
         </div>
-        <div class="item-box" style="margin-top:0.12rem;">
+        <div class="item-box" style="margin-top:1vh;">
             <div class="header-title">
                 <h2 class="title">器材</h2>
             </div>
             <el-row class="carousel-box" type="flex" justify="space-between" style="margin:0">
-                <el-col :span="3" class="icon-flex" :key="index">
+                <el-col :span="3" class="icon-flex">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/jsmhq@2x.png" class="img heng">
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex" :key="index">
+                <el-col :span="3" class="icon-flex">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/mhq@2x.png" class="img heng">
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex" :key="index">
+                <el-col :span="3" class="icon-flex">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/gjx@2x.png" class="img heng">
@@ -112,7 +112,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex" :key="index">
+                <el-col :span="3" class="icon-flex">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/jjx@2x.png" class="img heng">
@@ -121,7 +121,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex" :key="index">
+                <el-col :span="3" class="icon-flex">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/1014089@2x.png" class="img shu">
@@ -130,7 +130,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex" :key="index">
+                <el-col :span="3" class="icon-flex">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/dj@2x.png" class="img heng">
@@ -139,7 +139,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex" :key="index">
+                <el-col :span="3" class="icon-flex">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/zsq@2x.png" class="img heng">
@@ -148,7 +148,7 @@
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex" :key="index">
+                <el-col :span="3" class="icon-flex">
                     <div class="flex-item">
                         <div class="pos-box">
                             <img src="../../../assets/huxiji@2x.png" class="img shu">
@@ -206,26 +206,33 @@
 export default {
     name:'svgContainer',
     data() {
-        return {}
+        return {
+            carOptions:[{
+                name:'氧气瓶1',
+                val:'余量10.0%',
+                icon:'../../../assets/O2@2x.png'
+            }]
+        }
     },
     created() {}
 }
 </script>
 <style lang="scss" scoped>
+$margin:1vh;
 .svg-container{
     width:100%;
     height:100%;
     box-sizing:border-box;
-    padding:0.12rem 0rem 0.12rem 2.62rem;
+    padding:$margin 0rem $margin 2.62rem;
     .item-box{
         width:100%;
         .header-title{
             width:100%;
-            height:0.32rem;
-            line-height:0.32rem;
+            height:5vh;
+            line-height:5vh;
             padding-right:0.12rem;
             box-sizing:border-box;
-            margin-bottom:0.12rem;
+            margin-bottom:$margin;
             .title{
                 width:100%;
                 background:#fff;
@@ -238,7 +245,7 @@ export default {
         }
         .carousel-box{
             width:100%;
-            height:1.5rem;
+            height:25vh;
             margin:0;
             .icon-flex{
                 height:100%;
@@ -304,9 +311,9 @@ export default {
     }
     .battery-box{
         width:100%;
-        margin-top:0.12rem;
+        margin-top:$margin;
         .battery-item{
-            height:2.2rem;
+            height:27vh;
             padding-right:0.12rem;
             box-sizing:border-box;
             .flex-item{

@@ -27,11 +27,11 @@ export default {
 $boxShadow:0 -5px 20px rgba(100,100,100,0.2);
 .bottom-container{
   display:flex;
-  position:fixed;
+  position: fixed;
   left:0;
   bottom:0;
   width:100%;
-  height:0.5rem;
+  height:7vh;
   background:#60ACF6;
   box-sizing:border-box;
   box-shadow:$boxShadow;

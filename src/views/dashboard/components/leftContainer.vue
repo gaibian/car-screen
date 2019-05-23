@@ -6,9 +6,31 @@
             </div>
             <div class="title-box">急救信息系统</div>
             <p class="name">欢迎您, 张三</p>
+            <p class="name">欢迎您, 担架员</p>
         </div>
         <div class="car-container">
             <img :src="require('../../../assets/car.png')">
+            <div class="val-box top-left-box">
+                <div class="delta-box"></div>
+                <p>255Pa</p>
+                <p>28℃</p>
+            </div>
+            <div class="val-box top-right-box">
+                <div class="delta-box"></div>
+                <p>255Pa</p>
+                <p>28℃</p>
+            </div>
+            <div class="val-box bottom-left-box">
+                <div class="delta-box"></div>
+                <p>255Pa</p>
+                <p>28℃</p>
+            </div>
+            <div class="val-box bottom-right-box">
+                <div class="delta-box"></div>
+                <p>255Pa</p>
+                <p>28℃</p>
+            </div>
+
         </div>
         <div class="bottom-set-box">
             <div class="set-content">
@@ -59,7 +81,7 @@ $mainColor:#60ACF6;
             text-align:center;
             font-size:0.22rem;
             color:$mainColor;
-            margin:0.21rem auto 0 auto;
+            margin:0.21rem auto 0.21rem auto;
             padding-bottom:0.23rem;
             box-sizing:border-box;
             border-bottom:#C5C5C5 1px solid;
@@ -69,7 +91,7 @@ $mainColor:#60ACF6;
             text-align:center;
             font-size:0.15rem;
             color:#6A7F95;
-            margin-top:0.23rem;
+            margin-bottom:0.08rem;
         }
     }
     .bottom-set-box{
@@ -105,6 +127,7 @@ $mainColor:#60ACF6;
             height:0.35rem;
             line-height:0.35rem;
             border-radius:0.05rem;
+            //cursor: pointer;
             &:first-child{
                 margin-right:0.31rem;
             }
@@ -118,13 +141,72 @@ $mainColor:#60ACF6;
     }
 }
 .car-container{
+    position: absolute;
     width:100%;
-    margin-top:1.2rem;
+    left:0;
+    bottom:1.5rem;
     img{
         display:block;
         width:0.78rem;
         height:1.37rem;
         margin:0 auto;
     }
+
+    .val-box{
+        position: absolute;
+        font-size:0.14rem;
+        color:#60ACF6;
+        box-sizing:border-box;
+        .delta-box{
+            width:0;
+            height:0;
+            border-style:solid;
+            position: absolute;
+            top:50%;
+            transform:translate(0,-50%);
+        }
+        &.top-left-box{
+            top:0.2rem;
+            left:0.24rem;
+            padding-right:0.15rem;
+            .delta-box{
+                right:0;
+                border-width:0.07rem 0.07rem 0.07rem 0;
+                border-color:transparent #60ACF6 transparent transparent;/*透明 灰 透明 透明 */
+            }
+        }
+        &.top-right-box{
+            top:0.2rem;
+            left:68%;
+            padding-left:0.15rem;
+            .delta-box{
+                left:0;
+                border-width:0.07rem 0 0.07rem 0.07rem;
+                border-color:transparent transparent transparent #60ACF6;/*透明 透明 透明 灰*/
+            }
+        }
+        &.bottom-left-box{
+            bottom:0.2rem;
+            left:0.24rem;
+            padding-right:0.15rem;
+            .delta-box{
+                right:0;
+                border-width:0.07rem 0.07rem 0.07rem 0;
+                border-color:transparent #60ACF6 transparent transparent;/*透明 灰 透明 透明 */
+            }
+        }
+        &.bottom-right-box{
+            bottom:0.2rem;
+            right:0.24rem;
+            padding-left:0.15rem;
+            .delta-box{
+                left:0;
+                border-width:0.07rem 0 0.07rem 0.07rem;
+                border-color:transparent transparent transparent #60ACF6;/*透明 透明 透明 灰*/
+            }
+        }
+    }
+    
+    
 }
 </style>
