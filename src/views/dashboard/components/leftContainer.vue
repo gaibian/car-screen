@@ -65,7 +65,7 @@ $mainColor:#60ACF6;
     width:2.5rem;
     height:100%;
     background:#fff;
-    padding-top:0.51rem;
+    padding-top:0.34rem;
     box-sizing:border-box;
     .header-logo-box{
         width:1.4rem;
