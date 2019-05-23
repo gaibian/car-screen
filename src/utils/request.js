@@ -13,6 +13,7 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(
+  // 需要设置头部信息
   config => {
     // if (store.getters.token) {
     //   config.headers['X-Token'] = getToken()
@@ -71,7 +72,7 @@ service.interceptors.response.use(
 )
 
 export default {
-  //封装一些get post方法
+  //封装一些get post put delete方法 => 需要支持前端资源路由
   get(url, param) {
     return new Promise((resolve, reject) => {
       let params = {  //对于get请求 参数需要拼接到url地址上需要加一层params
@@ -114,4 +115,4 @@ export default {
   },
 }
 
-// export default service
+

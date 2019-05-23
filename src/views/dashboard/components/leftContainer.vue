@@ -124,6 +124,7 @@ $mainColor:#60ACF6;
         .set-box{
             padding:0 0.12rem;
             background:#60ACF6;
+            //background:#ee837b;
             height:0.35rem;
             line-height:0.35rem;
             border-radius:0.05rem;

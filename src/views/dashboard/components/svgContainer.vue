@@ -2,164 +2,39 @@
     <div class="svg-container">
         <div class="item-box">
             <div class="header-title">
-                <h2 class="title">车辆</h2>
+                <h2 class="title">
+                    <svg-icon class="equipment-icon" :icon-class="'equipmentAdmin'"></svg-icon>
+                    相关设备
+                </h2>
             </div>
             <el-row class="carousel-box" type="flex" justify="space-between" style="margin:0">
-                <el-col :span="3" class="icon-flex active">
+                <el-col :span="3" class="icon-flex" v-for="(item,index) in carOptions" :key="index">
                     <div class="flex-item">
                         <div class="pos-box">
-                            <img src="../../../assets/O2@2x.png" class="img shu">
-                                <p class="name">氧气瓶1</p>
-                                <p class="val">余量10.0%</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex active">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/dj12@2x.png" class="img heng">
-                            <p class="name">负压式骨折固定垫</p>
-                            <p class="val">未在位</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex active">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/jx3@2x.png" class="img heng">
-                            <p class="name">铲式担架</p>
-                            <p class="val">未在位</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex active">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/rdj@2x.png" class="img heng">
-                            <p class="name">软担架</p>
-                            <p class="val">未在位</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex active">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/hm@2x.png" class="img shu">
-                            <p class="name">急救舱后门</p>
-                            <p class="val">打开</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex active">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/jx1@2x.png" class="img heng">
-                            <p class="name">急救舱中门</p>
-                            <p class="val">打开</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex none">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <!-- <img src="../../../assets/syd@2x.png" class="img shu">
-                            <img  src="../../../assets/lx@2x.png" class="img-lx"> -->
-                            <div class="icon-box">  
-                                <svg-icon class="car-svg" :icon-class="'oxygenBag'"></svg-icon>
+                            <div class="icon-box">
+                                <svg-icon class="car-svg" :icon-class="item.icon"></svg-icon>
                             </div>
-                            <p class="name">氧气袋</p>
-                            <p class="val">离线</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/O12@2x.png" class="img shu">
-                            <p class="name">氧气瓶2</p>
-                            <p class="val">余量100.0%</p>
+                            <p class="name">{{item.name}}</p>
+                            <p class="val">{{item.val}}</p>
                         </div>
                     </div>
                 </el-col>
             </el-row>
         </div>
         <div class="item-box" style="margin-top:1vh;">
-            <div class="header-title">
-                <h2 class="title">器材</h2>
-            </div>
             <el-row class="carousel-box" type="flex" justify="space-between" style="margin:0">
-                <el-col :span="3" class="icon-flex">
+                <el-col :span="3" class="icon-flex" v-for="(item,index) in equipmentOptions" :key="index">
                     <div class="flex-item">
                         <div class="pos-box">
-                            <img src="../../../assets/jsmhq@2x.png" class="img heng">
-                            <p class="name">驾驶舱灭火器</p>
-                            <p class="val">在位</p>
+                            <div class="icon-box">
+                                <svg-icon class="car-svg" :icon-class="item.icon"></svg-icon>
+                            </div>
+                            <p class="name">{{item.name}}</p>
+                            <p class="val">{{item.val}}</p>
                         </div>
                     </div>
                 </el-col>
-                <el-col :span="3" class="icon-flex">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/mhq@2x.png" class="img heng">
-                            <p class="name">急救舱灭火器</p>
-                            <p class="val">在位</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/gjx@2x.png" class="img heng">
-                            <p class="name">随车工具</p>
-                            <p class="val">在位</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/jjx@2x.png" class="img heng">
-                            <p class="name">急救箱</p>
-                            <p class="val">在位</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/1014089@2x.png" class="img shu">
-                            <p class="name">心电监护除颤仪</p>
-                            <p class="val">在位</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/dj@2x.png" class="img heng">
-                            <p class="name">上下担架车</p>
-                            <p class="val">在位</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/zsq@2x.png" class="img heng">
-                            <p class="name">双道注射泵</p>
-                            <p class="val">在位</p>
-                        </div>
-                    </div>
-                </el-col>
-                <el-col :span="3" class="icon-flex">
-                    <div class="flex-item">
-                        <div class="pos-box">
-                            <img src="../../../assets/huxiji@2x.png" class="img shu">
-                            <p class="name">呼吸机</p>
-                            <p class="val">在位</p>
-                        </div>
-                    </div>
-                </el-col>
+       
             </el-row>
         </div>
         <!--电池-->
@@ -213,15 +88,79 @@ export default {
             carOptions:[{
                 name:'氧气瓶1',
                 val:'余量10.0%',
-                icon:'../../../assets/O2@2x.png'
+                icon:'oxygenBag'
+            },{
+                name:'负压式骨折固定垫',
+                val:'未在位',
+                icon:'oxygenBag'
+            },{
+                name:'铲式担架',
+                val:'未在位',
+                icon:'oxygenBag'
+            },{
+                name:'软担架',
+                val:'未在位',
+                icon:'oxygenBag'
+            },{
+                name:'急救仓后门',
+                val:'打开',
+                icon:'airBackDoor'
+            },{
+                name:'急救仓中门',
+                val:'打开',
+                icon:'airInDoor'
+            },{
+                name:'氧气袋',
+                val:'离线',
+                icon:'oxygenBag'
+            },{
+                name:'氧气瓶2',
+                val:'余量89.0%',
+                icon:'oxygenBomb'
+            }],
+            equipmentOptions:[{
+                name:'驾驶舱灭火器',
+                val:'在位',
+                icon:'cabFire'
+            },{
+                name:'急救舱灭火器',
+                val:'在位',
+                icon:'airFire'
+            },{
+                name:'随车工具',
+                val:'在位',
+                icon:'carTool'
+            },{
+                name:'急救箱',
+                val:'在位',
+                icon:'aidKit'
+            },{
+                name:'心电监护除颤仪',
+                val:'在位',
+                icon:'heartAll'
+            },{
+                name:'上下担架车',
+                val:'在位',
+                icon:'upDownStretcher'
+            },{
+                name:'双道注射泵',
+                val:'在位',
+                icon:'injection'
+            },{
+                name:'呼吸机',
+                val:'在位',
+                icon:'breathingMachine'
             }]
         }
     },
-    created() {}
+    created() {
+      
+    }
 }
 </script>
 <style lang="scss" scoped>
-$margin:1vh;
+$margin:2vh;
+$mainColor:#5baaf4;
 .svg-container{
     width:100%;
     height:100%;
@@ -237,18 +176,27 @@ $margin:1vh;
             box-sizing:border-box;
             margin-bottom:$margin;
             .title{
+                position:relative;
                 width:100%;
+                border-radius:0.02rem;
+                overflow:hidden;
                 background:#fff;
-                padding-left:0.12rem;
+                padding-left:0.38rem;
                 box-sizing:border-box;
                 font-size:0.14rem;
                 color:#6A7F95;
+                .equipment-icon{
+                    position:absolute;
+                    top:50%;
+                    left:0.12rem;
+                    transform:translate(0,-50%);
+                    font-size:0.20rem;
+                }
             }
-            
         }
         .carousel-box{
             width:100%;
-            height:25vh;
+            height:26vh;
             margin:0;
             .icon-flex{
                 height:100%;
@@ -259,6 +207,8 @@ $margin:1vh;
                     height:100%;
                     background:#fff;
                     position: relative;
+                    border-radius:0.02rem;
+                    overflow:hidden;
                 }
                 .pos-box{
                     width:100%;
@@ -279,29 +229,8 @@ $margin:1vh;
                             left:50%;
                             transform:translate(-50%,-50%);
                             font-size:0.5rem;
-                            color:#60ACF6;
-                            // background-image: -webkit-gradient(linear, left 0, right 0, from(rgb(4, 94, 170)), to(rgb(1, 152, 216)));
-                            // -webkit-background-clip: text; /*必需加前缀 -webkit- 才支持这个text值 */
-                            // -webkit-text-fill-color: transparent; /*text-fill-color会覆盖color所定义的字体颜色： */
+                            color:$mainColor;
                         }
-                    }
-                    .img{
-                        display:block;
-                        margin:0 auto 0.1rem auto;
-                        position: relative;
-                    }
-                    .heng{
-                        width:0.45rem;
-                    }
-                    .shu{
-                        height:0.45rem;
-                    }
-                    .img-lx{
-                        position: absolute;
-                        top: -0.2rem;
-                        left: 0;
-                        padding: 0 0.28rem;
-                        width: 100%;
                     }
                     .flex-item-detail{
                         position:absolute;
@@ -310,10 +239,11 @@ $margin:1vh;
                         width: 100%;
                     }
                     p{
-                        color:#7DCCF8;
+                        color:$mainColor;
                     }
                     .name{
                         margin-bottom:0.06rem;
+                        margin-top:0.06rem
                     }
                 }
                 &.active{
@@ -340,6 +270,8 @@ $margin:1vh;
                 width:100%;
                 height:100%;
                 position: relative;
+                border-radius:0.02rem;
+                overflow:hidden;
                 .battery-img{
                     width: 1rem;
                     position: absolute;
@@ -352,7 +284,7 @@ $margin:1vh;
                     margin-left: 0.35rem;
                     font-weight:400;
                     color:rgba(255,255,255,1);
-                    opacity:0.5;
+                    //opacity:0.5;
                 }
                 .battery-del{
                     font-size:0.15rem;

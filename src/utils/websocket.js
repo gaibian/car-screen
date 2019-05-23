@@ -21,11 +21,11 @@ class webSocket {
     }
     readyChat(data) {
         if(this.webSocket.readyState === 1) { //连接成功,可以立即发送消息
-
+            
         }else if(this.webSocket.readyState === 0) {  // 表示正在连接
 
         }else{  //连接失败或是未连接
-
+            console.warn('连接失败或是未连接')
         }
     }
 }
