@@ -44,7 +44,7 @@
                     <div class="flex-item flex-item-red">
                         <img src="../../../assets/ty01@2x.png" class="battery-img">
                         <div class="battery-title">病人在位情况</div>
-                        <div class="battery-del">在位<span class="battery-red">未系好安全带</span></div>
+                        <div class="battery-del">在位 - <span class="battery-red">未系好安全带</span></div>
                         <img src="../../../assets/people@2x.png" class="battery-bottom-img">
                         <span class="battery-bottom-warning">!</span>
                     </div>
@@ -96,11 +96,11 @@ export default {
             },{
                 name:'铲式担架',
                 val:'未在位',
-                icon:'oxygenBag'
+                icon:'shovelStretcher'
             },{
                 name:'软担架',
                 val:'未在位',
-                icon:'oxygenBag'
+                icon:'softStretcher'
             },{
                 name:'急救仓后门',
                 val:'打开',
@@ -293,7 +293,7 @@ $mainColor:#5baaf4;
                     line-height:0.2rem;
                     margin-left: 0.35rem;
                     .battery-red{
-                        color: #F93F60
+                        //color: #F93F60
                     }
                 }
             }
