@@ -7,6 +7,9 @@
             <div class="title-box">急救信息系统</div>
             <p class="name">欢迎您, 张三</p>
         </div>
+        <div class="car-container">
+            <img :src="require('../../../assets/car.png')">
+        </div>
         <div class="bottom-set-box">
             <div class="set-content">
                 <div class="set-box">
@@ -32,6 +35,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+$mainColor:#60ACF6;
 .left-container{
     position:fixed;
     top:0;
@@ -54,7 +58,7 @@ export default {
             width:100%;
             text-align:center;
             font-size:0.22rem;
-            color:#333;
+            color:$mainColor;
             margin:0.21rem auto 0 auto;
             padding-bottom:0.23rem;
             box-sizing:border-box;
@@ -64,7 +68,7 @@ export default {
             width:100%;
             text-align:center;
             font-size:0.15rem;
-            color:#333;
+            color:#6A7F95;
             margin-top:0.23rem;
         }
     }
@@ -111,6 +115,16 @@ export default {
                 text-align:center;
             }
         }
+    }
+}
+.car-container{
+    width:100%;
+    margin-top:1.2rem;
+    img{
+        display:block;
+        width:0.78rem;
+        height:1.37rem;
+        margin:0 auto;
     }
 }
 </style>
