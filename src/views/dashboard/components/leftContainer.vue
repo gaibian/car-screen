@@ -57,7 +57,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-$mainColor:#60ACF6;
 .left-container{
     position:fixed;
     top:0;
@@ -90,7 +89,7 @@ $mainColor:#60ACF6;
             width:100%;
             text-align:center;
             font-size:0.15rem;
-            color:#6A7F95;
+            color:$fontColor;
             margin-bottom:0.08rem;
         }
     }
@@ -99,23 +98,6 @@ $mainColor:#60ACF6;
         left:0;
         bottom:0.73rem;
         width:100%;
-        .patient-box{
-            width:100%;
-            margin-bottom:0.34rem;
-            .img-box{
-                width:1.56rem;
-                height:0.42rem;
-                font-size:0;
-                margin:0 auto;
-            }
-            .status-text{
-                width:100%;
-                text-align:center;
-                font-size:0.15rem;
-                color:#D05050;
-                margin-top:0.2rem;
-            }
-        }
         .set-content{
             width:100%;
             display:flex;
@@ -156,7 +138,7 @@ $mainColor:#60ACF6;
     .val-box{
         position: absolute;
         font-size:0.14rem;
-        color:#60ACF6;
+        color:$mainColor;
         box-sizing:border-box;
         .delta-box{
             width:0;
@@ -173,7 +155,7 @@ $mainColor:#60ACF6;
             .delta-box{
                 right:0;
                 border-width:0.07rem 0.07rem 0.07rem 0;
-                border-color:transparent #60ACF6 transparent transparent;/*透明 灰 透明 透明 */
+                border-color:transparent $mainColor transparent transparent;/*透明 灰 透明 透明 */
             }
         }
         &.top-right-box{
@@ -183,7 +165,7 @@ $mainColor:#60ACF6;
             .delta-box{
                 left:0;
                 border-width:0.07rem 0 0.07rem 0.07rem;
-                border-color:transparent transparent transparent #60ACF6;/*透明 透明 透明 灰*/
+                border-color:transparent transparent transparent $mainColor;/*透明 透明 透明 灰*/
             }
         }
         &.bottom-left-box{
@@ -193,7 +175,7 @@ $mainColor:#60ACF6;
             .delta-box{
                 right:0;
                 border-width:0.07rem 0.07rem 0.07rem 0;
-                border-color:transparent #60ACF6 transparent transparent;/*透明 灰 透明 透明 */
+                border-color:transparent $mainColor transparent transparent;/*透明 灰 透明 透明 */
             }
         }
         &.bottom-right-box{
@@ -203,7 +185,7 @@ $mainColor:#60ACF6;
             .delta-box{
                 left:0;
                 border-width:0.07rem 0 0.07rem 0.07rem;
-                border-color:transparent transparent transparent #60ACF6;/*透明 透明 透明 灰*/
+                border-color:transparent transparent transparent $mainColor;/*透明 透明 透明 灰*/
             }
         }
     }

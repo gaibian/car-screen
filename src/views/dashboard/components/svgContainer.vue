@@ -34,7 +34,6 @@
                         </div>
                     </div>
                 </el-col>
-       
             </el-row>
         </div>
         <!--电池-->
@@ -155,12 +154,18 @@ export default {
     },
     created() {
       
+    },
+    mounted() {
+        let svg = document.getElementById('icon-oxygenBomb_xiaojun')
+        //console.log(svg)
+        // 获取到的svg图标的位置不对，获取到的宽高也是不对的
+        let rect = svg.getBoundingClientRect();
+        //console.log(rect)
     }
 }
 </script>
 <style lang="scss" scoped>
 $margin:2vh;
-$mainColor:#5baaf4;
 .svg-container{
     width:100%;
     height:100%;
@@ -184,7 +189,7 @@ $mainColor:#5baaf4;
                 padding-left:0.38rem;
                 box-sizing:border-box;
                 font-size:0.15rem;
-                color:#6A7F95;
+                color:$fontColor;
                 .equipment-icon{
                     position:absolute;
                     top:50%;
@@ -248,11 +253,13 @@ $mainColor:#5baaf4;
                 }
                 &.active{
                     p{
+                        //设备异常
                         color:#FA7663
                     }
                 }
                 &.none{
                     p{
+                        //设备离线
                         color:#bbb
                     }
                 }

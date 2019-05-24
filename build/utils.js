@@ -67,7 +67,12 @@ exports.cssLoaders = function(options) {
     sass: generateLoaders('sass', {
       indentedSyntax: true
     }),
-    scss: generateLoaders('sass'),
+    scss: generateLoaders('sass').concat({
+      loader: 'sass-resources-loader',
+      options: {
+        resources: path.resolve(__dirname, '../src/styles/var.scss') //这里是单独建的存放变量的scss，我的是 var.scss
+      }
+    }),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }

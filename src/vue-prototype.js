@@ -1,5 +1,6 @@
 // 绑定vue原型上的全局属性和方法
 import Vue from 'vue'
+import api from '@/api'
 
 class vuePrototype {
     constructor() {
@@ -12,4 +13,5 @@ class vuePrototype {
     }
 }
 
+Vue.prototype.$api = api
 Vue.prototype.$prototype = new vuePrototype()

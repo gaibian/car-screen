@@ -1,5 +1,7 @@
-$theme:blue;
+// 定义全局的sass变量  并能导出去提供给js使用
+$mainColor:#5baaf4;
+$fontColor:#6A7F95;
 
 :export{
-    theme: $theme
+    mainColor: $mainColor
 }
