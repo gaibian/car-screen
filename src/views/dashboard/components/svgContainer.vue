@@ -1,6 +1,6 @@
 <template>
     <div class="svg-container">
-        <div class="item-box">
+        <div class="item-box" ref="box">
             <div class="header-title">
                 <h2 class="title">
                     <svg-icon class="equipment-icon" :icon-class="'equipmentAdmin'"></svg-icon>
@@ -10,7 +10,7 @@
             <el-row class="carousel-box" type="flex" justify="space-between" style="margin:0">
                 <el-col :span="3" class="icon-flex" v-for="(item,index) in carOptions" :key="index">
                     <div class="flex-item">
-                        <div class="pos-box">
+                        <div class="pos-box" :class="classChange(item.status)">
                             <div class="icon-box">
                                 <svg-icon class="car-svg" :icon-class="item.icon"></svg-icon>
                             </div>
@@ -25,7 +25,7 @@
             <el-row class="carousel-box" type="flex" justify="space-between" style="margin:0">
                 <el-col :span="3" class="icon-flex" v-for="(item,index) in equipmentOptions" :key="index">
                     <div class="flex-item">
-                        <div class="pos-box">
+                        <div class="pos-box" :class="classChange(item.status)">
                             <div class="icon-box">
                                 <svg-icon class="car-svg" :icon-class="item.icon"></svg-icon>
                             </div>
@@ -43,37 +43,23 @@
                 <el-col :span="6" class="battery-item">
                     <div class="flex-item flex-item-red">
                         <img src="../../../assets/ty01@2x.png" class="battery-img">
-                        <div class="battery-title">病人在位情况</div>
-                        <div class="battery-del">在位 - <span class="battery-red">未系好安全带</span></div>
+                        <div class="battery-title">{{brmodule.name}}</div>
+                        <div class="battery-del">{{brmodule.val}} - <span class="battery-red">{{brmodule.aqd}}</span></div>
                         <img src="../../../assets/people@2x.png" class="battery-bottom-img">
                         <span class="battery-bottom-warning">!</span>
                     </div>
                 </el-col>
-                <el-col :span="6" class="battery-item">
-                    <div class="flex-item flex-item-green">
-                        <img src="../../../assets/ty02@2x.png" class="battery-img">
-                        <div class="battery-title">原车蓄电池情况</div>
-                        <div class="battery-del">余量 90%</div>
-                        <div class="battery-del">健康度 90%</div>
-                        <img src="../../../assets/xdc@2x.png" class="battery-bottom-img1">
-                    </div>
-                </el-col>
-                <el-col :span="6" class="battery-item">
-                    <div class="flex-item flex-item-blue">
-                        <img src="../../../assets/ty03@2x.png" class="battery-img">
-                        <div class="battery-title">锂电池情况</div>
-                        <div class="battery-del">余量 90%</div>
-                        <div class="battery-del">健康度 90%</div>
-                        <img src="../../../assets/ldc@2x.png" class="battery-bottom-img1">
-                    </div>
-                </el-col>
-                <el-col :span="6" class="battery-item">
-                    <div class="flex-item flex-item-orange">
-                        <img src="../../../assets/ty04@2x.png" class="battery-img">
-                        <div class="battery-title">后备蓄电池情况</div>
-                        <div class="battery-del">余量 90%</div>
-                        <div class="battery-del">健康度 90%</div>
-                        <img src="../../../assets/xdc@2x.png" class="battery-bottom-img1">
+                <el-col :span="6" class="battery-item" v-for="(item,index) in bottommodule" :key="index">
+                    <div class="flex-item" :class="classHandle(item.status)">
+                        <img :src="require(`../../../assets/ty0${index + 2}@2x.png`)" class="battery-img">
+                        <div class="battery-title">{{item.name}}</div>
+                        <div class="battery-del">余量 {{item.yl}}</div>
+                        <div class="battery-del">健康度 {{item.jkd}}</div>
+                        <div class="pos-box">
+                        <div class="icon-box">
+                            <svg-icon class="battery-svg" :icon-class="item.icon"></svg-icon>
+                        </div>
+                        </div>
                     </div>
                 </el-col>
             </el-row>
@@ -85,77 +71,155 @@ export default {
     name:'svgContainer',
     data() {
         return {
+            carOptions:[],
             carOptions:[{
                 name:'氧气瓶1',
                 val:'余量10.0%',
-                icon:'oxygenBag'
+                icon:'oxygenBag',
+                status:0
             },{
                 name:'负压式骨折固定垫',
                 val:'未在位',
-                icon:'fixedPad'
+                icon:'fixedPad',
+                status:0
             },{
                 name:'铲式担架',
                 val:'未在位',
-                icon:'shovelStretcher'
+                icon:'shovelStretcher',
+                status:1
             },{
                 name:'软担架',
                 val:'未在位',
-                icon:'softStretcher'
+                icon:'softStretcher',
+                status:2
             },{
                 name:'急救仓后门',
                 val:'打开',
-                icon:'airBackDoor'
+                icon:'airBackDoor',
+                status:2
             },{
                 name:'急救仓中门',
                 val:'打开',
-                icon:'airInDoor'
+                icon:'airInDoor',
+                status:2
             },{
                 name:'氧气袋',
                 val:'离线',
-                icon:'oxygenBag'
+                icon:'oxygenBag',
+                status:2
             },{
                 name:'氧气瓶2',
                 val:'余量89.0%',
-                icon:'oxygenBomb'
+                icon:'oxygenBomb',
+                status:2
             }],
             equipmentOptions:[{
                 name:'驾驶舱灭火器',
                 val:'在位',
-                icon:'cabFire'
+                icon:'cabFire',
+                status:2
             },{
                 name:'急救舱灭火器',
                 val:'在位',
-                icon:'airFire'
+                icon:'airFire',
+                status:2
             },{
                 name:'随车工具',
                 val:'在位',
-                icon:'carTool'
+                icon:'carTool',
+                status:2
             },{
                 name:'急救箱',
                 val:'在位',
-                icon:'aidKit'
+                icon:'aidKit',
+                status:2
             },{
                 name:'心电监护除颤仪',
                 val:'在位',
-                icon:'heartAll'
+                icon:'heartAll',
+                status:2
             },{
                 name:'上下担架车',
                 val:'在位',
-                icon:'upDownStretcher'
+                icon:'upDownStretcher',
+                status:2
             },{
                 name:'双道注射泵',
                 val:'在位',
-                icon:'injection'
+                icon:'injection',
+                status:2
             },{
                 name:'呼吸机',
                 val:'在位',
-                icon:'breathingMachine'
+                icon:'breathingMachine',
+                status:2
+            }],
+            brmodule:{
+                name:'病人在位情况',
+                val:'在位',
+                aqd:'未系好安全带',
+            },
+            bottommodule:[{
+                name:'原车蓄电池情况',
+                yl:'90%',
+                jkd:'100%',
+                icon:'xudianchi',
+                status:0
+            },{
+                name:'锂电池情况',
+                yl:'90%',
+                jkd:'100%',
+                icon:'lidianchi',
+                status:1
+            },{
+                name:'后备蓄电池情况',
+                yl:'90%',
+                jkd:'100%',
+                icon:'xudianchi',
+                status:2
             }]
         }
     },
+    methods:{
+        classHandle(val) {
+            switch(val) {
+                case 0:
+                    return 'flex-item-green';
+                    break;
+                case 1:
+                    return 'flex-item-blue';
+                    break;
+                case 2:
+                    return 'flex-item-orange';
+                    break;
+            }
+        },
+        classChange(val) {
+            switch(val) {
+                case 0:
+                    return 'pos-box-red';
+                    break;
+                case 1:
+                    return 'pos-box-gray';
+                    break;
+                case 2:
+                    return 'pos-box-blue';
+                    break;
+            }
+        },
+    },
     created() {
-      
-    }
+        console.log(this)
+        // 1.声明 var let const
+        // 2.数据类型 [] {} 1 'q' true ...
+        // 3.作用域链 
+        // 4.函数块 =》 柯里化 高阶函数 this
+
+     
+
+        
+    },
+ 
 }
 </script>
 <style lang="scss" scoped>
@@ -229,7 +293,6 @@ $mainColor:#5baaf4;
                             left:50%;
                             transform:translate(-50%,-50%);
                             font-size:0.5rem;
-                            color:$mainColor;
                         }
                     }
                     .flex-item-detail{
@@ -238,24 +301,33 @@ $mainColor:#5baaf4;
                         margin-bottom: 0.1rem;
                         width: 100%;
                     }
-                    p{
-                        color:$mainColor;
-                    }
+                    // p{
+                    //     color:$mainColor;
+                    // }
                     .name{
                         margin-bottom:0.06rem;
                         margin-top:0.06rem
                     }
                 }
-                &.active{
-                    p{
-                        color:#FA7663
-                    }
+                .pos-box-blue{
+                    color:$mainColor;
                 }
-                &.none{
-                    p{
-                        color:#bbb
-                    }
+                .pos-box-gray{
+                    color:#bbb !important;
                 }
+                .pos-box-red{
+                    color:#FA7663 !important;
+                }
+                // &.active{
+                //     p{
+                //         color:#FA7663
+                //     }
+                // }
+                // &.none{
+                //     p{
+                //         color:#bbb
+                //     }
+                // }
             }
         }
     }
@@ -295,6 +367,15 @@ $mainColor:#5baaf4;
                     .battery-red{
                         //color: #F93F60
                     }
+                }
+                .battery-svg{
+                    position: absolute;
+                    right: 0;
+                    font-size:1rem;
+                    color:#fff;
+                    opacity: 0.3;
+                    bottom: 0;
+                    padding-right: 0.35rem;
                 }
             }
             .battery-bottom-img{
@@ -340,5 +421,6 @@ $mainColor:#5baaf4;
             }
         }
     }
+    .display_none{display: none;}
 }
 </style>
