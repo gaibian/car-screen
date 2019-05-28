@@ -208,19 +208,6 @@ export default {
         },
     },
     created() {
-<<<<<<< HEAD
-        console.log(this)
-        // 1.声明 var let const
-        // 2.数据类型 [] {} 1 'q' true ...
-        // 3.作用域链 
-        // 4.函数块 =》 柯里化 高阶函数 this
-
-     
-
-        
-    },
- 
-=======
       
     },
     mounted() {
@@ -230,7 +217,6 @@ export default {
         let rect = svg.getBoundingClientRect();
         //console.log(rect)
     }
->>>>>>> 8b6fcff826b0df34e9fc8977fb2394afdf3b664d
 }
 </script>
 <style lang="scss" scoped>
@@ -319,7 +305,6 @@ $margin:2vh;
                         margin-top:0.06rem
                     }
                 }
-<<<<<<< HEAD
                 .pos-box-blue{
                     color:$mainColor;
                 }
@@ -328,19 +313,6 @@ $margin:2vh;
                 }
                 .pos-box-red{
                     color:#FA7663 !important;
-=======
-                &.active{
-                    p{
-                        //设备异常
-                        color:#FA7663
-                    }
-                }
-                &.none{
-                    p{
-                        //设备离线
-                        color:#bbb
-                    }
->>>>>>> 8b6fcff826b0df34e9fc8977fb2394afdf3b664d
                 }
                 // &.active{
                 //     p{
