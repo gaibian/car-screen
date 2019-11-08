@@ -1,5 +1,6 @@
 import http from '@/utils/http'
 import qs from 'qs'
+import base from '../base'
 
 const aidIndex = {
     // 左侧栏目

@@ -5,23 +5,46 @@
                 <h2 class="title">
                     <svg-icon class="equipment-icon" :icon-class="'equipmentAdmin'"></svg-icon>
                     相关设备
+                    <p class="refresh" @click="handleRefreshClick">
+                        <i class="el-icon-refresh"></i>
+                    </p>
                 </h2>
             </div>
-            <el-row class="carousel-box" type="flex" justify="space-between" style="margin:0">
-                <el-col :span="3" class="icon-flex" v-for="(item,index) in carOptions" :key="index">
+            <el-row class="carousel-box" style="margin:0" :gutter="12">
+                <el-col :span="6" class="icon-flex" v-for="(item,index) in carOptions" :key="index">
                     <div class="flex-item">
                         <div class="pos-box">
-                            <div class="icon-box">
+                            <div class="icon-box" :style="{color:`${handleType(item).color}`}">
                                 <svg-icon class="car-svg" :icon-class="item.icon"></svg-icon>
                             </div>
+                            <p class="val">
+                                <el-tag :type="handleType(item).val">{{item.val}}</el-tag>
+                            </p>
                             <p class="name">{{item.name}}</p>
-                            <p class="val">{{item.val}}</p>
                         </div>
                     </div>
                 </el-col>
             </el-row>
         </div>
-        <div class="item-box" style="margin-top:1vh;">
+        <!-- <el-row type="flex" class="charts-box item-box" style="margin-top:1.5vh">
+            <el-col :span="6" class="icon-flex" v-for="(item,index) in temperatureData" :key="index">
+                <div :id="`temperature${index}`" style="width:100%;height:100%"></div>
+                <div class="name">温度</div>
+            </el-col>
+        </el-row> -->
+        <!-- <div class="item-box" style="margin-top:1.5vh">
+            <el-row type="flex" class="carousel-box" justify="space-between" style="margin:0;height:47vh">
+                <el-col :span="6" class="icon-flex">
+                    <div class="oxygen-box">
+                        
+                        <svg-icon :icon-class="'oxygenBomb'" style="font-size:1.8rem;color:#409EFF"></svg-icon>
+                        <p class="val">80%</p>
+                        <p class="name">氧气瓶1</p>
+                    </div>
+                </el-col>
+            </el-row>
+        </div> -->
+        <!-- <div class="item-box" style="margin-top:1vh;">
             <el-row class="carousel-box" type="flex" justify="space-between" style="margin:0">
                 <el-col :span="3" class="icon-flex" v-for="(item,index) in equipmentOptions" :key="index">
                     <div class="flex-item">
@@ -35,9 +58,9 @@
                     </div>
                 </el-col>
             </el-row>
-        </div>
+        </div> -->
         <!--电池-->
-        <div class="battery-box">
+        <!-- <div class="battery-box">
             <el-row type="flex" justify="space-between" style="margin:0">
                 <el-col :span="6" class="battery-item">
                     <div class="flex-item flex-item-red">
@@ -76,110 +99,273 @@
                     </div>
                 </el-col>
             </el-row>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
+//grasp null
+import echarts from 'echarts'
 export default {
     name:'svgContainer',
-    data() {
-        return {
-            carOptions:[{
-                name:'氧气瓶1',
-                val:'余量10.0%',
-                icon:'oxygenBag'
-            },{
-                name:'负压式骨折固定垫',
-                val:'未在位',
-                icon:'fixedPad'
-            },{
-                name:'铲式担架',
-                val:'未在位',
-                icon:'shovelStretcher'
-            },{
-                name:'软担架',
-                val:'未在位',
-                icon:'softStretcher'
-            },{
-                name:'急救仓后门',
-                val:'打开',
-                icon:'airBackDoor'
-            },{
-                name:'急救仓中门',
-                val:'打开',
-                icon:'airInDoor'
-            },{
-                name:'氧气袋',
-                val:'离线',
-                icon:'oxygenBag'
-            },{
-                name:'氧气瓶2',
-                val:'余量89.0%',
-                icon:'oxygenBomb'
-            }],
-            equipmentOptions:[{
-                name:'驾驶舱灭火器',
-                val:'在位',
-                icon:'cabFire'
-            },{
-                name:'急救舱灭火器',
-                val:'在位',
-                icon:'airFire'
-            },{
-                name:'随车工具',
-                val:'在位',
-                icon:'carTool'
-            },{
-                name:'急救箱',
-                val:'在位',
-                icon:'aidKit'
-            },{
-                name:'心电监护除颤仪',
-                val:'在位',
-                icon:'heartAll'
-            },{
-                name:'上下担架车',
-                val:'在位',
-                icon:'upDownStretcher'
-            },{
-                name:'双道注射泵',
-                val:'在位',
-                icon:'injection'
-            },{
-                name:'呼吸机',
-                val:'在位',
-                icon:'breathingMachine'
-            }]
+    props:{
+        webData:{
+            type:[Array,Object],
+            required: true
+        },
+        temperatureData:{
+            type:[Array,Object],
+            required:true
+        },
+    },
+    watch:{
+        webData:{
+            handler() {
+                if(this.webData.length > 0){
+                    console.log('webData',this.webData)
+                    this.updateData();
+                } 
+            },
+            deep:true
+        },
+        temperatureData:{
+            handler() {
+                if(this.temperatureData.length > 0) {
+                    //this.chartInit();
+                }
+            },
+            deep:true
         }
     },
-    created() {
-      
+    data() {
+        return {
+            carOptions:[],
+            charts:null,
+        }
     },
     mounted() {
         let svg = document.getElementById('icon-oxygenBomb_xiaojun')
-        //console.log(svg)
         // 获取到的svg图标的位置不对，获取到的宽高也是不对的
         let rect = svg.getBoundingClientRect();
-        //console.log(rect)
+    },
+    methods:{
+        // 刷新页面
+        handleRefreshClick() {
+            this.$emit('refreshClick',true)
+        },
+        // chartInit() {
+        //     this.$nextTick(() => {
+        //         this.temperatureData.forEach((item,index) => {
+        //             let chartId = document.getElementById(`temperature${index}`);
+        //             this.charts = echarts.init(chartId);
+        //             let option = {
+        //                 tooltip : {
+        //                     formatter: "{a} <br/>{b} : {c}%"
+        //                 },
+        //                 grid:{
+        //                     top:10,
+        //                     bottom:30,
+        //                     left:10,
+        //                     right:10
+        //                 },
+        //                 series: [
+        //                     {
+        //                         name: '温度',
+        //                         type: 'gauge',
+        //                         axisLine: {
+        //                             lineStyle: {
+        //                                 width:10,
+        //                             }
+        //                         },
+        //                         axisLabel:{
+        //                             distance:-14
+        //                         },
+        //                         detail: {
+        //                             formatter:'{value}℃',
+        //                             fontSize:15,
+        //                             offsetCenter:[0,'70%'],
+        //                         },
+        //                         data: [{value: item.anaValue, name: ''}]
+        //                     }
+        //                 ]
+        //             };
+        //             this.charts.setOption(option)
+        //         })
+                
+        //     })
+            
+        // },
+        handleType(item) {
+    
+            let obj = {
+                val: '',
+                color:''
+            }
+            // 上车担架在位开关 是反的 1 是不在位
+            if(item.isReign == 1){
+                if(item.name == '上车担架在位开关'){
+                    if(item.anaValue == 1){
+                        obj.val = 'danger'
+                        obj.color = '#F56C6C'
+                    }else{
+                        obj.val = ''
+                        obj.color = '#409EFF'
+                    }
+                }else if(item.name == '灭火器'){
+                        obj.val = '';
+                        obj.color = '#409EFF'
+                }else if(item.name == '急救舱中门'){
+                        if(item.anaValue == 1){
+                            obj.val = 'danger'
+                            obj.color = '#F56C6C'
+                        }else{
+                            obj.val = ''
+                            obj.color = '#409EFF'
+                        }
+                }else if(item.name == '急救舱后门'){
+                        if(item.anaValue == 1){
+                            obj.val = 'danger'
+                            obj.color = '#F56C6C'
+                        }else{
+                            obj.val = ''
+                            obj.color = '#409EFF'
+                        }
+                }else{
+                    if(item.anaValue == 1 && item.driverType != 2){
+                        obj.val = ''
+                        obj.color = '#409EFF'
+                    }else{
+                        obj.val = 'danger'
+                        obj.color = '#F56C6C'
+                    }
+                    if(item.driverType == 2){  // 模拟量 颜色分类 只分为在线和离线
+                        obj.val = '';
+                        obj.color = '#409EFF'
+                    }
+                    // 
+                }
+            }else{
+                obj.val = 'info'
+                obj.color = '#909399'
+            }
+            
+            return obj
+        },
+        updateData() {
+            this.carOptions = [];
+            let type = (element,name,val1,val2) => {
+                let obj = {val:'',color:''}
+                if(element.anaValue == 1){
+                    obj.val = val1
+                }else{
+                    obj.val = val2
+                }
+                return obj
+            }
+            
+                this.webData.forEach(element => {
+                    this.$prototype.deviceSvgOptions.forEach(item => {
+                        let name = item.name;
+                            if(name == element.driverName){
+                                let val = '';
+                                // 先判断在线离线 => 再判断是否在位等状态
+                                if(element.isReign == 1){  // 在线
+                                    if(element.driverType == 1){
+                                        if(element.driverName == '病人'){
+                                            val = type(element,'病人','在位','不在位').val
+                                        }
+                                        if(element.driverName == '病人保险带开关'){
+                                            val = type(element,'病人保险带开关','已系','未系').val
+                                        }
+                                        if(element.driverName == '急救舱后门'){
+                                            val = type(element,'急救舱后门','开启','关闭').val
+                                        }
+                                        if(element.driverName == '急救舱中门'){
+                                            val = type(element,'急救舱中门','开启','关闭').val
+                                        }
+                                        if(element.driverName == '上车担架在位开关'){
+                                            val = type(element,'上车担架在位开关','不在位','在位').val
+                                        }
+                                        if(element.driverName == '灭火器'){
+                                            val = '在线'
+                                        }
+                                    }
+                                    if(element.driverType == 5){  // 等于5的话, 只显示在线和离线
+                                        val = '在线'
+                                    }
+                                    if(val == ''){  // 如果为空的话 显示模拟量 => 为氧气瓶
+                                        val = `${((element.anaValue / 1000 / 150) * 100).toFixed(2)}%`
+                                    }
+                                }else{
+                                    val = '离线'
+                                }
+
+                                this.carOptions.push({
+                                    name:element.driverName,
+                                    val:val,
+                                    icon:item.svg,
+                                    anaValue:element.anaValue,
+                                    isReign:element.isReign,
+                                    driverType:element.driverType
+                                })
+                            }
+                    })
+               
+                })
+  
+        }
     }
 }
 </script>
 <style lang="scss" scoped>
-$margin:2vh;
+$margin:1vh;
+#temperature{
+    width:100%;
+    height:100%;
+}
+.charts-box{
+    width:100%;
+    height:42vh;
+    .icon-flex{
+        position: relative;
+        height:100%;
+        background:#fff;
+        .name{
+            position: absolute;
+            bottom:0.12rem;
+            left:0;
+            width:100%;
+            text-align:center;
+            font-size:0.18rem;
+            color:#606266;
+        }
+    }
+}
 .svg-container{
     width:100%;
     height:100%;
     box-sizing:border-box;
-    padding:$margin 0rem $margin 2.62rem;
+    padding:$margin 0.12rem $margin 2.62rem;
     .item-box{
         width:100%;
         .header-title{
+            position: relative;
             width:100%;
-            height:5vh;
-            line-height:5vh;
-            padding-right:0.12rem;
+            height:8vh;
+            line-height:8vh;
+            //padding-right:0.1rem;
             box-sizing:border-box;
             margin-bottom:$margin;
+            .refresh{
+                position: absolute;
+                top:0;
+                right:0.1rem;
+                width:8vh;
+                height:8vh;
+                text-align:center;
+                font-size:0.26rem;
+                color:#606266;
+                cursor: pointer;
+            }
             .title{
                 position:relative;
                 width:100%;
@@ -201,12 +387,59 @@ $margin:2vh;
         }
         .carousel-box{
             width:100%;
-            height:26vh;
-            margin:0;
             .icon-flex{
-                height:100%;
-                padding-right:0.1rem;
+                position: relative;
+                height:39vh;
                 box-sizing:border-box;
+                background:#fff;
+                margin-bottom:1vh;
+                &:last-child{
+                    margin-right:0;
+                }
+                .oxygen-box{
+                    width:100%;
+                    position: absolute;
+                    top:50%;
+                    left:50%;
+                    transform:translate(-50%,-50%);
+                    font-size:0;
+                    text-align: center;
+                    .name{
+                        font-size:0.18rem;
+                        color:#606266;
+                    }
+                    .val{
+                        font-size:0.18rem;
+                        color:#606266;
+                        margin:0.12rem 0;
+                    }
+                }
+                .oxygen-bottle{
+                    position: absolute;
+                    top:50%;
+                    left:0.2rem;
+                    transform:translate(0,-50%);
+                    width:0.8rem;
+                    .middle-bottle{
+                        width:100%;
+                        height:1.4rem;
+                        background:#409EFF;
+                    }
+                    .cir-bottle{
+                        position: absolute;
+                        left:0;
+                        width:0.8rem;
+                        height:0.8rem;
+                        border-radius:50%;
+                        background:#409EFF;
+                        &.bottom{
+                            bottom:-0.4rem;
+                        }
+                        &.top{
+                            top:-0.4rem;
+                        }
+                    }
+                }
                 .flex-item{
                     width:100%;
                     height:100%;
@@ -217,12 +450,16 @@ $margin:2vh;
                 }
                 .pos-box{
                     width:100%;
-                    position: absolute;
-                    top:50%;
-                    left:50%;
+                    height:28vh;
+                    // position: absolute;
+                    // top:50%;
+                    // left:50%;
                     text-align: center;
-                    font-size:0.14rem;
-                    transform:translate(-50%,-50%);
+                    font-size:0.18rem;
+                    margin-top:0.7rem;
+                    // margin-left:-50%;
+                    // margin-top:-50%;
+                    //transform:translate(-50%,-50%);
                     .icon-box{
                         position: relative;
                         width:0.6rem;
@@ -233,8 +470,8 @@ $margin:2vh;
                             top:50%;
                             left:50%;
                             transform:translate(-50%,-50%);
-                            font-size:0.5rem;
-                            color:$mainColor;
+                            font-size:0.8rem;
+                            //color:$mainColor;
                         }
                     }
                     .flex-item-detail{
@@ -245,10 +482,12 @@ $margin:2vh;
                     }
                     p{
                         color:$mainColor;
+                        margin:0.12rem 0;
                     }
                     .name{
                         margin-bottom:0.06rem;
-                        margin-top:0.06rem
+                        margin-top:0.06rem;
+                        color:#606266;
                     }
                 }
                 &.active{
@@ -270,7 +509,7 @@ $margin:2vh;
         width:100%;
         margin-top:$margin;
         .battery-item{
-            height:27vh;
+            height:31vh;
             padding-right:0.12rem;
             box-sizing:border-box;
             .flex-item{

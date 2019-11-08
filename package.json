@@ -5,7 +5,7 @@
   "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
   "author": "Pan <panfree23@gmail.com>",
   "scripts": {
-    "serve": "webpack-dev-server --host 192.168.3.213 --inline --progress --config build/webpack.dev.conf.js",
+    "serve": "webpack-dev-server --host 192.168.3.113 --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js",
     "build:report": "npm_config_report=true npm run build",
@@ -20,6 +20,7 @@
     "mockjs": "1.0.1-beta3",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
+    "reconnecting-websocket": "^4.2.0",
     "vue-router": "3.0.1",
     "vuex": "3.0.1"
   },
@@ -59,6 +60,7 @@
     "postcss-import": "12.0.0",
     "postcss-loader": "2.1.6",
     "postcss-url": "7.3.2",
+    "promise": "^8.0.3",
     "rimraf": "2.6.2",
     "sass-loader": "7.0.3",
     "sass-resources-loader": "^2.0.0",
@@ -69,6 +71,7 @@
     "svgo": "1.0.5",
     "uglifyjs-webpack-plugin": "1.2.7",
     "url-loader": "1.0.1",
+    "vant": "^2.2.10",
     "vue": "^2.6.0",
     "vue-amap": "^0.5.9",
     "vue-count-to": "^1.0.13",

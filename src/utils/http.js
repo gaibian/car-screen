@@ -19,7 +19,7 @@ const errorHanle = (state,other) => {
       // 登录失效
       break;
     default:
-     console.log(other)   
+    console.log(other)   
   }
 }
 // request拦截器
@@ -36,8 +36,14 @@ service.interceptors.request.use(
 
 // response 拦截器
 service.interceptors.response.use(
-
-  res => res.status === 200 ? Promise.resolve(res) : Promise.reject(res),
+  res => {
+    if(res.status === 200){
+      console.log('进来的res',res)
+      Promise.resolve(res.data)
+    }else{
+      Promise.reject(res)
+    }
+  },
   // 请求失败
   error => {
     const { response } = error;

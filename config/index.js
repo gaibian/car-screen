@@ -12,7 +12,7 @@ module.exports = {
     proxyTable: {},
 
     // Various Dev Server settings
-    host: '192.168.3.213', // can be overwritten by process.env.HOST
+    host: '192.168.3.113', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
@@ -44,6 +44,7 @@ module.exports = {
   build: {
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
+    //index: path.resolve(__dirname, '../../www/index.html'),
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
@@ -56,7 +57,8 @@ module.exports = {
      * then assetsPublicPath should be set to "/bar/".
      * In most cases please use '/' !!!
      */
-    assetsPublicPath: '/',
+    //assetsPublicPath: '',
+    assetsPublicPath: './',
 
     /**
      * Source Maps

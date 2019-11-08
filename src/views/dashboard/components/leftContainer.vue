@@ -4,35 +4,20 @@
             <div class="logo-box">
                 <img width="100%" height="100%" :src="logoImg">
             </div>
-            <div class="title-box">急救信息系统</div>
-            <p class="name">欢迎您, 张三</p>
-            <p class="name">欢迎您, 担架员</p>
+            <div class="title-box">陆军急救信息系统</div>
+            <!-- <p class="name">欢迎您, 张三</p>
+            <p class="name">欢迎您, 担架员</p> -->
         </div>
         <div class="car-container">
             <img :src="require('../../../assets/car.png')">
-            <div class="val-box top-left-box">
+            <div class="val-box" :class="handleIndex(item,index)" v-for="(item,index) in tyreData" :key="index">
                 <div class="delta-box"></div>
-                <p>255Pa</p>
-                <p>28℃</p>
-            </div>
-            <div class="val-box top-right-box">
-                <div class="delta-box"></div>
-                <p>255Pa</p>
-                <p>28℃</p>
-            </div>
-            <div class="val-box bottom-left-box">
-                <div class="delta-box"></div>
-                <p>255Pa</p>
-                <p>28℃</p>
-            </div>
-            <div class="val-box bottom-right-box">
-                <div class="delta-box"></div>
-                <p>255Pa</p>
-                <p>28℃</p>
+                <p>{{item.baroPressure}}<span>Pa</span></p>
+                <p>{{item.temperature}}<span>℃</span></p>
             </div>
 
         </div>
-        <div class="bottom-set-box">
+        <!-- <div class="bottom-set-box">
             <div class="set-content">
                 <div class="set-box">
                     <p class="text">设置</p>
@@ -41,18 +26,58 @@
                     <p class="text">物联网</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </template>
 <script>
 export default {
     name:'leftContainer',
+    props:{
+        tyreData:{
+            type:[Array,Object],
+            required:true
+        }
+    },
+    watch:{
+        tyreData:{
+            handler() {
+                if(this.tyreData.length > 0){
+                    console.log('tyreData',this.tyreData)
+                    this.updateData();
+                }
+            },
+            deep:true
+        }
+    },
+    //http://video_dca6320c3312.nbguardian.com:9999/bYAUnNuxv1jt5F2NIPcvXIiMxtphra/videos/123456/xmSEhPn1Qr/2019-11-06T13-00-01.mp4
     data() {
         return {
-            logoImg:require('../../../assets/logo@2x.png'),
+            logoImg:require('../../../assets/aid-logo.png'),
         }
     },
     created() {
+        
+    },
+    methods:{
+        updateData() {
+
+        },
+        handleIndex(item,index) {
+            switch(index) {
+                case 0:
+                    return 'top-left-box';
+                    break;
+                case 1:
+                    return 'top-right-box';
+                    break;
+                case 2:
+                    return 'bottom-left-box';
+                    break;
+                case 3:
+                    return 'bottom-right-box';
+                    break;
+            }
+        }
     }    
 }
 </script>
@@ -96,7 +121,7 @@ export default {
     .bottom-set-box{
         position:absolute;
         left:0;
-        bottom:0.73rem;
+        bottom:0.7rem;
         width:100%;
         .set-content{
             width:100%;
@@ -127,7 +152,7 @@ export default {
     position: absolute;
     width:100%;
     left:0;
-    bottom:1.5rem;
+    bottom:1.3rem;
     img{
         display:block;
         width:0.78rem;
@@ -140,6 +165,9 @@ export default {
         font-size:0.14rem;
         color:$mainColor;
         box-sizing:border-box;
+        span{
+            //color:#606266;
+        }
         .delta-box{
             width:0;
             height:0;
