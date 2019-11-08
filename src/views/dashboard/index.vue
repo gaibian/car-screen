@@ -6,7 +6,6 @@
     <svg-container :webData="webData" @refreshClick="refreshClick" :temperatureData="temperatureData"></svg-container>
     <!--底部内容-->
     <bottom-container :temper="temper" :temperatureData="temperatureData" ref="bottomContainer" :dataOptions="dataOptions"></bottom-container>
-    <!--实时播放-->
   </el-row>
 </template>
 <script>

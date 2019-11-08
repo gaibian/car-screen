@@ -1,6 +1,6 @@
 <template>
     <div class="svg-container">
-        <div class="item-box">
+        <div class="item-box" ref="box">
             <div class="header-title">
                 <h2 class="title">
                     <svg-icon class="equipment-icon" :icon-class="'equipmentAdmin'"></svg-icon>
@@ -48,7 +48,7 @@
             <el-row class="carousel-box" type="flex" justify="space-between" style="margin:0">
                 <el-col :span="3" class="icon-flex" v-for="(item,index) in equipmentOptions" :key="index">
                     <div class="flex-item">
-                        <div class="pos-box">
+                        <div class="pos-box" :class="classChange(item.status)">
                             <div class="icon-box">
                                 <svg-icon class="car-svg" :icon-class="item.icon"></svg-icon>
                             </div>
@@ -65,37 +65,23 @@
                 <el-col :span="6" class="battery-item">
                     <div class="flex-item flex-item-red">
                         <img src="../../../assets/ty01@2x.png" class="battery-img">
-                        <div class="battery-title">病人在位情况</div>
-                        <div class="battery-del">在位 - <span class="battery-red">未系好安全带</span></div>
+                        <div class="battery-title">{{brmodule.name}}</div>
+                        <div class="battery-del">{{brmodule.val}} - <span class="battery-red">{{brmodule.aqd}}</span></div>
                         <img src="../../../assets/people@2x.png" class="battery-bottom-img">
                         <span class="battery-bottom-warning">!</span>
                     </div>
                 </el-col>
-                <el-col :span="6" class="battery-item">
-                    <div class="flex-item flex-item-green">
-                        <img src="../../../assets/ty02@2x.png" class="battery-img">
-                        <div class="battery-title">原车蓄电池情况</div>
-                        <div class="battery-del">余量 90%</div>
-                        <div class="battery-del">健康度 90%</div>
-                        <img src="../../../assets/xdc@2x.png" class="battery-bottom-img1">
-                    </div>
-                </el-col>
-                <el-col :span="6" class="battery-item">
-                    <div class="flex-item flex-item-blue">
-                        <img src="../../../assets/ty03@2x.png" class="battery-img">
-                        <div class="battery-title">锂电池情况</div>
-                        <div class="battery-del">余量 90%</div>
-                        <div class="battery-del">健康度 90%</div>
-                        <img src="../../../assets/ldc@2x.png" class="battery-bottom-img1">
-                    </div>
-                </el-col>
-                <el-col :span="6" class="battery-item">
-                    <div class="flex-item flex-item-orange">
-                        <img src="../../../assets/ty04@2x.png" class="battery-img">
-                        <div class="battery-title">后备蓄电池情况</div>
-                        <div class="battery-del">余量 90%</div>
-                        <div class="battery-del">健康度 90%</div>
-                        <img src="../../../assets/xdc@2x.png" class="battery-bottom-img1">
+                <el-col :span="6" class="battery-item" v-for="(item,index) in bottommodule" :key="index">
+                    <div class="flex-item" :class="classHandle(item.status)">
+                        <img :src="require(`../../../assets/ty0${index + 2}@2x.png`)" class="battery-img">
+                        <div class="battery-title">{{item.name}}</div>
+                        <div class="battery-del">余量 {{item.yl}}</div>
+                        <div class="battery-del">健康度 {{item.jkd}}</div>
+                        <div class="pos-box">
+                        <div class="icon-box">
+                            <svg-icon class="battery-svg" :icon-class="item.icon"></svg-icon>
+                        </div>
+                        </div>
                     </div>
                 </el-col>
             </el-row>
@@ -490,18 +476,25 @@ $margin:1vh;
                         color:#606266;
                     }
                 }
-                &.active{
-                    p{
-                        //设备异常
-                        color:#FA7663
-                    }
+                .pos-box-blue{
+                    color:$mainColor;
                 }
-                &.none{
-                    p{
-                        //设备离线
-                        color:#bbb
-                    }
+                .pos-box-gray{
+                    color:#bbb !important;
                 }
+                .pos-box-red{
+                    color:#FA7663 !important;
+                }
+                // &.active{
+                //     p{
+                //         color:#FA7663
+                //     }
+                // }
+                // &.none{
+                //     p{
+                //         color:#bbb
+                //     }
+                // }
             }
         }
     }
@@ -541,6 +534,15 @@ $margin:1vh;
                     .battery-red{
                         //color: #F93F60
                     }
+                }
+                .battery-svg{
+                    position: absolute;
+                    right: 0;
+                    font-size:1rem;
+                    color:#fff;
+                    opacity: 0.3;
+                    bottom: 0;
+                    padding-right: 0.35rem;
                 }
             }
             .battery-bottom-img{
@@ -586,5 +588,6 @@ $margin:1vh;
             }
         }
     }
+    .display_none{display: none;}
 }
 </style>
